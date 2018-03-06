@@ -4,6 +4,10 @@ function addText(){
   clearNetSpine();
   var titleText = document.getElementById("title-input").value;
   var authorText = document.getElementById("author-input").value;
+
+  config.titleText = titleText;
+  config.titleText = authorText;
+  saveConfig();
   title.innerHTML = titleText;
   author.innerHTML = authorText;
   // updates all the fonts in the list to be the input title

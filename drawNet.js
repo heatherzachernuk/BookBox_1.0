@@ -41,6 +41,12 @@ var title = document.getElementById("spine-title");
 var author = document.getElementById("spine-author");
 var netSpine;
 
+var config = {};
+
+function saveConfig(){
+  localStorage.setItem("config", JSON.stringify(config));
+}
+
 window.addEventListener("load", updateDimensions, false);
 // window.addEventListener("load", () => spineCoordinates("landscape"), false);
 document.getElementById("gat").addEventListener("click", updateDimensions, false);
