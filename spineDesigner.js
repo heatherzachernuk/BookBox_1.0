@@ -47,7 +47,7 @@ function authorFit(){
   // refers to the "height" - pre-rotation
   // author.style.height = authorSpace + "px";
   // what's the point in setting this if it changes?
-  author.style.width = spine.getBoundingClientRect().height + "px";
+  author.style.width = spine.getBoundingClientRect().height - 6 + "px";
   
   var textBoxHeight = author.getBoundingClientRect().width;
   while(textBoxHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
