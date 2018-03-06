@@ -6,7 +6,7 @@ function addText(){
   var authorText = document.getElementById("author-input").value;
 
   config.titleText = titleText;
-  config.titleText = authorText;
+  config.authorText = authorText;
   saveConfig();
   title.innerHTML = titleText;
   author.innerHTML = authorText;

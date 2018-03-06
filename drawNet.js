@@ -44,7 +44,11 @@ var netSpine;
 var config = {};
 
 function saveConfig(){
-  localStorage.setItem("config", JSON.stringify(config));
+  localStorage.setItem("configItem", JSON.stringify(config));
+}
+
+function loadConfig(){
+  config = JSON.parse(localStorage.getItem("configItem"));
 }
 
 window.addEventListener("load", updateDimensions, false);
