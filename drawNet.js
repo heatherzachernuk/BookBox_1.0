@@ -130,10 +130,9 @@ function imageCoordinates(){
     coverImage.style.left = coverRectX + "px";
     var textCover = document.getElementById("text-only");
     textCover.style.height = holder.height + "px"; 
-    console.log(holder.height, holder.width);
     textCover.style.width = holder.width + "px"; 
-    textCover.style.top = coverRectX + "px";
-    textCover.style.left = coverRectY + "px";
+    textCover.style.top = holder.x + "px";
+    textCover.style.left = holder.y + "px";
     textCover.style.outline = "solid thin red";
     textCover.style.position = "fixed";
   }
