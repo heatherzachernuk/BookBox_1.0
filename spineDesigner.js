@@ -33,6 +33,7 @@ function coverFit(){
     coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
+  emSize = 6;
   while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth){
     emSize -= 0.25;
     coverAuthor.style.fontSize = emSize + "em";
