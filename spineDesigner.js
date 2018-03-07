@@ -82,12 +82,12 @@ function authorFit(){
   // what's the point in setting this if it changes?
   author.style.width = spine.getBoundingClientRect().height - 6 + "px";
   
-  var textBoxHeight = author.getBoundingClientRect().width;
-  while(textBoxHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
+  var authorHeight = author.getBoundingClientRect().width;
+  while(authorHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
     // debugger;
     emSize -= 0.15;
     author.style.fontSize = emSize + "em";
-    textBoxHeight = author.getBoundingClientRect().width;
+    authorHeight = author.getBoundingClientRect().width;
   }
   // sets the position of the author to just above the spine line below
   if(stripes === "on"){
