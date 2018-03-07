@@ -11,6 +11,7 @@ function addText(){
   config.titleText = titleText;
   config.authorText = authorText;
   saveConfig();
+  coverTitle.innerHTML = titleText;
   title.innerHTML = titleText;
   author.innerHTML = authorText;
   // updates all the fonts in the list to be the input title
