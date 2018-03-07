@@ -35,7 +35,7 @@ function coverFit(){
   }
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   var coverTitleHeight = coverTitle.getBoundingClientRect().height;
-  emSize = 2;
+  emSize = 1.5;
   coverAuthor.style.fontSize = emSize + "em";
   while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
     emSize -= 0.25;
@@ -43,7 +43,7 @@ function coverFit(){
     coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   }
   coverTitle.style.top = coverTitle.getBoundingClientRect().height/2;
-  coverAuthor.style.bottom = "-5px";
+  coverAuthor.style.bottom = 0;
 }
 
 function titleFit(){
