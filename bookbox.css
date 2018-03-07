@@ -91,6 +91,10 @@ line {
   z-index: 1;
 }
 
+.cover-text {
+  padding: 0.2em;
+}
+
 #color-selector{
   width: 30em;
   margin: 0 auto;
