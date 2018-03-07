@@ -122,15 +122,15 @@ function setAttributes(objectId, attributes){
 
 // checks whether your cover image is taller or wider
 function imageCoordinates(){
+  holder = rect3.getBoundingClientRect();
+  coverRectX = holder.x;
+  coverRectY = holder.y;
   if(coverImageExists === false){
     coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
   }
   else{
     coverImage.width = x;
     coverImage.height = y;
-    holder = rect3.getBoundingClientRect();
-    coverRectX = holder.x;
-    coverRectY = holder.y;
     //what are the 4px on the left from?
     var ctx = coverImage.getContext("2d");
     var targetAspect = image.width/image.height;
