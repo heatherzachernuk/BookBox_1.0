@@ -132,8 +132,8 @@ function imageCoordinates(){
     textCover.style.position = "fixed";
     textCover.style.height = holder.height + "px"; 
     textCover.style.width = holder.width + "px"; 
-    textCover.style.top = holder.x + "px";
-    textCover.style.left = holder.y + "px";
+    textCover.style.top = holder.y + "px";
+    textCover.style.left = holder.x + "px";
     textCover.style.outline = "solid thin red";  
     textCover.style.display = "inline-block";
   }
