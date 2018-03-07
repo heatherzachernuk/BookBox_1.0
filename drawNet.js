@@ -6,10 +6,12 @@ var holder;
 
 // object where the cover image is drawn on the net
 var coverImage = document.getElementById("image-canvas");
+var coverImageExists = false;
 
 // the actual cover image element
 var image = document.getElementById("image");
 image.crossOrigin = "Anonymous";
+
 
 var imageHeight;
 var imageWidth;
@@ -89,6 +91,7 @@ function loadCover(changeEvent){
   reader.addEventListener("load", onCoverFileLoaded);
   reader.readAsDataURL(file); 
   document.getElementById("image-picker-div").style.visibility = "visible";
+  coverImageExists = true;
 }
 
 function onCoverFileLoaded(fileLoadEvent){
@@ -119,35 +122,40 @@ function setAttributes(objectId, attributes){
 
 // checks whether your cover image is taller or wider
 function imageCoordinates(){
-  coverImage.width = x;
-  coverImage.height = y;
-  holder = rect3.getBoundingClientRect();
-  coverRectX = holder.x;
-  coverRectY = holder.y;
-  //what are the 4px on the left from?
-  var ctx = coverImage.getContext("2d");
-  var targetAspect = image.width/image.height;
-  // if the cover image is proportionally shorter and wider than the net cover
-  if(targetAspect > x/y){
-    imageHeight = x/targetAspect; 
-    imageWidth = x;
-    margin = (y - imageHeight)/2;    
-    coverImage.style = ("top: " + (coverRectY + margin) + "px; left: " + coverRectX + "px;");
-    ctx.drawImage(image, 0, 0, x, imageHeight);
+  if(coverImageExists === false){
+    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;";);
   }
-  // if the cover image is proportionally taller and skinner than the net cover
-  else if(targetAspect <= x/y){
-    imageHeight = y;
-    imageWidth = y * targetAspect;
-    margin = (x - imageWidth)/2;
-    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
-    ctx.drawImage(image, 0, 0, imageWidth, y);
-  } 
-  if(0.85*targetAspect > x/y){
-    frontStripes = "on";
-  }
-  else {
-    frontStripes = "off";
+  else{
+    coverImage.width = x;
+    coverImage.height = y;
+    holder = rect3.getBoundingClientRect();
+    coverRectX = holder.x;
+    coverRectY = holder.y;
+    //what are the 4px on the left from?
+    var ctx = coverImage.getContext("2d");
+    var targetAspect = image.width/image.height;
+    // if the cover image is proportionally shorter and wider than the net cover
+    if(targetAspect > x/y){
+      imageHeight = x/targetAspect; 
+      imageWidth = x;
+      margin = (y - imageHeight)/2;    
+      coverImage.style = ("top: " + (coverRectY + margin) + "px; left: " + coverRectX + "px;");
+      ctx.drawImage(image, 0, 0, x, imageHeight);
+    }
+    // if the cover image is proportionally taller and skinner than the net cover
+    else if(targetAspect <= x/y){
+      imageHeight = y;
+      imageWidth = y * targetAspect;
+      margin = (x - imageWidth)/2;
+      coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
+      ctx.drawImage(image, 0, 0, imageWidth, y);
+    } 
+    if(0.85*targetAspect > x/y){
+      frontStripes = "on";
+    }
+    else {
+      frontStripes = "off";
+    }
   }
   drawStripes();
 }

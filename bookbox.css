@@ -99,7 +99,6 @@ line {
 #image-canvas{
   position: fixed;
   /*display: none;*/
-  top: 800px;
 }
 
 #page{
