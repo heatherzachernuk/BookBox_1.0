@@ -135,6 +135,7 @@ function imageCoordinates(){
     textCover.style.top = holder.x + "px";
     textCover.style.left = holder.y + "px";
     textCover.style.outline = "solid thin red";  
+    textCover.style.display = "inline-block";
   }
   else{
     coverImage.width = x;
