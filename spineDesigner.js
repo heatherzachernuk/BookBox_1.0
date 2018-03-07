@@ -26,14 +26,12 @@ function coverFit(){
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
   var emSize = 12;
   coverTitle.style.fontSize = emSize + "em";
-  while(coverTitleWidth > coverBox.width){
+  while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
     emSize -= 0.25;
     title.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
 }
-
-//FAAAAAAAAAAAAAAAAAAAAAAAAAAAK
 
 function titleFit(){
   // figures out where the stripes are gonna be, if there are any
