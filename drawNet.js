@@ -136,6 +136,7 @@ function imageCoordinates(){
     textCover.style.outline = "solid thin red";  
   }
   else{
+    textCover.style.display = "none";
     coverImage.width = x;
     coverImage.height = y;
     //what are the 4px on the left from?
