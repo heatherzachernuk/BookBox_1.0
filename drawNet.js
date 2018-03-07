@@ -126,7 +126,8 @@ function imageCoordinates(){
   var coverRectX = holder.x;
   var coverRectY = holder.y;
   if(coverImageExists === false){
-    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX) + "px;");
+    coverImage.style.top = coverRectY + "px"; 
+    coverImage.style.left = coverRectX + "px";
   }
   else{
     coverImage.width = x;
