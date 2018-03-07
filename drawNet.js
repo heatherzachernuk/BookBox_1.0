@@ -123,7 +123,7 @@ function setAttributes(objectId, attributes){
 // checks whether your cover image is taller or wider
 function imageCoordinates(){
   if(coverImageExists === false){
-    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;";);
+    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
   }
   else{
     coverImage.width = x;
