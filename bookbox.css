@@ -99,7 +99,7 @@ line {
 #image-canvas{
   position: fixed;
   /*display: none;*/
-  outline: solid thin red;
+  /*outline: solid thin red;*/
 }
 
 #page{

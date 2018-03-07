@@ -128,6 +128,12 @@ function imageCoordinates(){
   if(coverImageExists === false){
     coverImage.style.top = coverRectY + "px"; 
     coverImage.style.left = coverRectX + "px";
+    var textCover = document.getElementById("text-only");
+    textCover.style.height = holder.height; 
+    textCover.style.width = holder.width; 
+    textCover.style.top = coverRectX + "px";
+    textCover.style.left = coverRectY + "px";
+    textCover.style.outline = "solid thin red";
   }
   else{
     coverImage.width = x;
