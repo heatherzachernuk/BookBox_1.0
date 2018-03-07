@@ -129,12 +129,12 @@ function imageCoordinates(){
     coverImage.style.top = coverRectY + "px"; 
     coverImage.style.left = coverRectX + "px";
     var textCover = document.getElementById("text-only");
+    textCover.style.position = "fixed";
     textCover.style.height = holder.height + "px"; 
     textCover.style.width = holder.width + "px"; 
     textCover.style.top = holder.x + "px";
     textCover.style.left = holder.y + "px";
-    textCover.style.outline = "solid thin red";
-    textCover.style.position = "fixed";
+    textCover.style.outline = "solid thin red";  
   }
   else{
     coverImage.width = x;
