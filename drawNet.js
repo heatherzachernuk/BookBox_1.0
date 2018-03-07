@@ -7,7 +7,7 @@ var holder;
 // object where the cover image is drawn on the net
 var coverImage = document.getElementById("image-canvas");
 var coverImageExists = false;
-
+var textCover = document.getElementById("text-only");
 // the actual cover image element
 var image = document.getElementById("image");
 image.crossOrigin = "Anonymous";
@@ -128,7 +128,6 @@ function imageCoordinates(){
   if(coverImageExists === false){
     coverImage.style.top = coverRectY + "px"; 
     coverImage.style.left = coverRectX + "px";
-    var textCover = document.getElementById("text-only");
     textCover.style.position = "fixed";
     textCover.style.height = holder.height + "px"; 
     textCover.style.width = holder.width + "px"; 

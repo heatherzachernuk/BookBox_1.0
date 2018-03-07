@@ -21,7 +21,7 @@ function addText(){
 }
 
 function coverFit(){
-  var coverBox = coverText.getBoundingClientRect();
+  var coverBox = textCover.getBoundingClientRect();
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
   var emSize = 6;
   coverTitle.style.fontSize = emSize + "em";
