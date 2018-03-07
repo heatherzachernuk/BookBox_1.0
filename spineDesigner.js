@@ -35,15 +35,15 @@ function coverFit(){
   }
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   var coverTitleHeight = coverTitle.getBoundingClientRect().height;
-  emSize = 6;
+  emSize = 2;
   coverAuthor.style.fontSize = emSize + "em";
-  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthorHeight.scrollHeight > coverBox - coverTitleHeight){
+  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
     emSize -= 0.25;
     coverAuthor.style.fontSize = emSize + "em";
     coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   }
   coverTitle.style.top = coverTitle.getBoundingClientRect().height/2;
-  coverAuthor.style.bottom = 0;
+  coverAuthor.style.bottom = "-5px";
 }
 
 function titleFit(){
