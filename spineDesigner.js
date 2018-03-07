@@ -24,13 +24,22 @@ function addText(){
 function coverFit(){
   var coverBox = textCover.getBoundingClientRect();
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
+  var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   var emSize = 6;
+  coverTitle.style.fontSize = emSize + "em";
   coverTitle.style.fontSize = emSize + "em";
   while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
+  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth){
+    emSize -= 0.25;
+    coverAuthor.style.fontSize = emSize + "em";
+    coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
+  }
+  coverTitle.style.top = coverBox.height/2 - coverTitle.getBoundingClientRect().height/2;
+  coverAuthor.style.bottom = 0;
 }
 
 function titleFit(){
