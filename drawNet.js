@@ -130,6 +130,7 @@ function imageCoordinates(){
     coverImage.style.left = coverRectX + "px";
     var textCover = document.getElementById("text-only");
     textCover.style.height = holder.height; 
+    console.log(holder.height, holder.width);
     textCover.style.width = holder.width; 
     textCover.style.top = coverRectX + "px";
     textCover.style.left = coverRectY + "px";
