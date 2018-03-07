@@ -25,16 +25,16 @@ function addText(){
 function coverFit(){
   var coverBox = textCover.getBoundingClientRect();
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
-  
+  var coverTitleHeight = coverTitle.getBoundingClientRect().height;
   var emSize = 6;
   coverTitle.style.fontSize = emSize + "em";
-  while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
+  while(coverTitleWidth > (coverBox.width) || coverTitle.clientWidth < coverTitle.scrollWidth 
+    || coverTitle.scrollHeight > (0.7*coverBox.height)){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
-  var coverTitleHeight = coverTitle.getBoundingClientRect().height;
   emSize = 1.5;
   coverAuthor.style.fontSize = emSize + "em";
   while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
