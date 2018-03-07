@@ -33,6 +33,8 @@ function coverFit(){
   }
 }
 
+//FAAAAAAAAAAAAAAAAAAAAAAAAAAAK
+
 function titleFit(){
   // figures out where the stripes are gonna be, if there are any
   if(stripes === "off"){
