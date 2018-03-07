@@ -27,13 +27,13 @@ function coverFit(){
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   var emSize = 6;
   coverTitle.style.fontSize = emSize + "em";
-  coverTitle.style.fontSize = emSize + "em";
   while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
   emSize = 6;
+  coverAuthor.style.fontSize = emSize + "em";
   while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth){
     emSize -= 0.25;
     coverAuthor.style.fontSize = emSize + "em";
