@@ -28,7 +28,7 @@ function coverFit(){
   coverTitle.style.fontSize = emSize + "em";
   while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
     emSize -= 0.25;
-    title.style.fontSize = emSize + "em";
+    coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
   }
 }
