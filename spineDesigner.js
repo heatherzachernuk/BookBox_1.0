@@ -27,8 +27,9 @@ function coverFit(){
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
   var coverTitleHeight = coverTitle.getBoundingClientRect().height;
   var emSize = 6;
+  
   coverTitle.style.fontSize = emSize + "em";
-  while(coverTitleWidth > (coverBox.width) || coverTitle.clientWidth < coverTitle.scrollWidth 
+  while(coverTitleWidth > (coverBox.width - coverMargin) || coverTitle.clientWidth < coverTitle.scrollWidth - coverMargin 
     || coverTitle.scrollHeight > (0.7*coverBox.height)){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
@@ -37,7 +38,7 @@ function coverFit(){
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   emSize = 1.5;
   coverAuthor.style.fontSize = emSize + "em";
-  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
+  while(coverAuthorWidth > coverBox.width - coverMargin || coverAuthor.clientWidth < coverAuthor.scrollWidth - coverMargin || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
     emSize -= 0.25;
     coverAuthor.style.fontSize = emSize + "em";
     coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
@@ -76,10 +77,6 @@ function authorFit(){
   var authorSpace = line3.getBoundingClientRect().right - title.getBoundingClientRect().right;
   var emSize = 3;
   author.style.fontSize = emSize + "em";
-  
-  // refers to the "height" - pre-rotation
-  // author.style.height = authorSpace + "px";
-  // what's the point in setting this if it changes?
   author.style.width = spine.getBoundingClientRect().height - 6 + "px";
   
   var authorHeight = author.getBoundingClientRect().width;

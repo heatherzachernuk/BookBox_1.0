@@ -8,6 +8,8 @@ var holder;
 var coverImage = document.getElementById("image-canvas");
 var coverImageExists = false;
 var textCover = document.getElementById("text-only");
+// variable to set a bit of a margin on the cover text
+var coverMargin = 6;
 // the actual cover image element
 var image = document.getElementById("image");
 image.crossOrigin = "Anonymous";
@@ -126,8 +128,8 @@ function imageCoordinates(){
   var coverRectX = holder.x;
   var coverRectY = holder.y;
   if(coverImageExists === false){
-    coverImage.style.top = coverRectY + "px"; 
-    coverImage.style.left = coverRectX + "px";
+    coverImage.style.top = coverRectY - coverMargin/2 + "px"; 
+    coverImage.style.left = coverRectX - coverMargin/2 + "px";
     textCover.style.position = "fixed";
     textCover.style.height = holder.height + "px"; 
     textCover.style.width = holder.width + "px"; 
