@@ -123,10 +123,10 @@ function setAttributes(objectId, attributes){
 // checks whether your cover image is taller or wider
 function imageCoordinates(){
   holder = rect3.getBoundingClientRect();
-  coverRectX = holder.x;
-  coverRectY = holder.y;
+  var coverRectX = holder.x;
+  var coverRectY = holder.y;
   if(coverImageExists === false){
-    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
+    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX) + "px;");
   }
   else{
     coverImage.width = x;
