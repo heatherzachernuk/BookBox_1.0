@@ -1,5 +1,8 @@
 document.getElementById("get-details").addEventListener("click", addText, false);
 
+var coverTitle = document.getElementById("cover-title");
+var coverAuthor = document.getElementById("cover-author");
+
 function addText(){
   clearNetSpine();
   var titleText = document.getElementById("title-input").value;
@@ -12,8 +15,21 @@ function addText(){
   author.innerHTML = authorText;
   // updates all the fonts in the list to be the input title
   Array.from(document.querySelectorAll(".font")).forEach(el => el.innerHTML = titleText);
+  coverFit();
   titleFit();
   authorFit();
+}
+
+function coverFit(){
+  var coverBox = coverText.getBoundingClientRect();
+  var coverTitleWidth = coverTitle.getBoundingClientRect().width;
+  var emSize = 6;
+  coverTitle.style.fontSize = emSize + "em";
+  while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth){
+    emSize -= 0.25;
+    title.style.fontSize = emSize + "em";
+    coverTitleWidth = coverTitle.getBoundingClientRect().width;
+  }
 }
 
 function titleFit(){
@@ -24,7 +40,6 @@ function titleFit(){
   else {
     title.style.left = line2.getBoundingClientRect().width + 5 + "px"; 
   }
-  
   var spineHeight = spine.getBoundingClientRect().height;
   var emSize = 6;
   title.style.fontSize = emSize + "em";
