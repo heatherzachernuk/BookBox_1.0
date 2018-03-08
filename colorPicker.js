@@ -109,6 +109,8 @@ function pickColor(color){
   }
   if(colorPath === "detail"){
     detailsSwatch.style.backgroundColor = rgba; 
+    coverTitle.style.color = rgba;
+    coverAuthor.style.color = rgba;
     title.style.color = rgba; 
     author.style.color = rgba; 
     if(stripes === "on"){
