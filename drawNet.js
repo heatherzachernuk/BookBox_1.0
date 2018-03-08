@@ -131,10 +131,10 @@ function imageCoordinates(){
     coverImage.style.top = coverRectY - coverMargin/2 + "px"; 
     coverImage.style.left = coverRectX - coverMargin/2 + "px";
     textCover.style.position = "fixed";
-    textCover.style.height = holder.height + "px"; 
-    textCover.style.width = holder.width + "px"; 
-    textCover.style.top = holder.y + "px";
-    textCover.style.left = holder.x + "px";
+    textCover.style.height = holder.height - 6 + "px"; 
+    textCover.style.width = holder.width - 6 + "px"; 
+    textCover.style.top = holder.y + 3 + "px";
+    textCover.style.left = holder.x + 3 + "px";
     textCover.style.outline = "solid thin red";  
   }
   else{
