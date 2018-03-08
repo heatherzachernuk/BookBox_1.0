@@ -92,7 +92,16 @@ line {
 }
 
 .cover-text {
-  /*padding: 0.2em;*/
+  text-align: center;
+}
+
+#cover-title{
+  padding-top: 1em;
+}
+
+#cover-author{
+  position: absolute;
+  bottom: 0.2em;
 }
 
 #color-selector{
