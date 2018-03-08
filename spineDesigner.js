@@ -41,8 +41,6 @@ function coverFit(){
     coverAuthor.style.fontSize = emSize + "em";
     coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   }
-  coverTitle.style.top = coverTitle.getBoundingClientRect().height/2;
-  coverAuthor.style.bottom = 5 + "px";
 }
 
 function titleFit(){

@@ -10,6 +10,8 @@ function chooseFont(fontClick){
   author.style.fontFamily = fontClick.target.id;
   clearNetSpine();
   title.style.fontFamily = fontClick.target.id;
+  coverTitle.fontFamily = fontClick.target.id;
+  coverAuthor.fontFamily = fontClick.target.id;
   titleFit();
   authorFit();
 }
