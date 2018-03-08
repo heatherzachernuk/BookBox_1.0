@@ -123,6 +123,7 @@ function pickColor(color){
       line3.style.borderRight = "3px solid "+rgba; 
       line4.style.borderRight = "3px solid "+rgba;
     }
+    coverFit();
     titleFit();
     document.getElementById("landscape").checked = "true";
     spine.style.transform = "none";
