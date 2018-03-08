@@ -102,6 +102,7 @@ line {
 #cover-author{
   position: absolute;
   bottom: 0.2em;
+  width: 100%;
 }
 
 #color-selector{
