@@ -17,7 +17,9 @@ function addText(){
   author.innerHTML = authorText;
   // updates all the fonts in the list to be the input title
   Array.from(document.querySelectorAll(".font")).forEach(el => el.innerHTML = titleText);
-  coverFit();
+  if(coverImageExists === false){
+    coverFit();
+  }
   titleFit();
   authorFit();
 }

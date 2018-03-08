@@ -12,7 +12,9 @@ function chooseFont(fontClick){
   title.style.fontFamily = fontClick.target.id;
   coverTitle.style.fontFamily = fontClick.target.id;
   coverAuthor.style.fontFamily = fontClick.target.id;
-  coverFit();
+  if(coverImageExists === false){
+  	coverFit();
+  }
   titleFit();
   authorFit();
 }
