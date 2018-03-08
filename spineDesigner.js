@@ -27,10 +27,8 @@ function coverFit(){
   var coverTitleWidth = coverTitle.getBoundingClientRect().width;
   var coverTitleHeight = coverTitle.getBoundingClientRect().height;
   var emSize = 6;
-  
   coverTitle.style.fontSize = emSize + "em";
-  while(coverTitleWidth > (coverBox.width - coverMargin) || coverTitle.clientWidth < coverTitle.scrollWidth - coverMargin 
-    || coverTitle.scrollHeight > (0.7*coverBox.height)){
+  while(coverTitleWidth > (coverBox.width) || coverTitle.clientWidth < coverTitle.scrollWidth || coverTitle.scrollHeight > (0.7*coverBox.height)){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
     coverTitleWidth = coverTitle.getBoundingClientRect().width;
@@ -38,7 +36,7 @@ function coverFit(){
   var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
   emSize = 1.5;
   coverAuthor.style.fontSize = emSize + "em";
-  while(coverAuthorWidth > coverBox.width - coverMargin || coverAuthor.clientWidth < coverAuthor.scrollWidth - coverMargin || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
+  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
     emSize -= 0.25;
     coverAuthor.style.fontSize = emSize + "em";
     coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
