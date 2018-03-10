@@ -45,6 +45,7 @@ var title = document.getElementById("spine-title");
 var author = document.getElementById("spine-author");
 var netSpine;
 
+// local storage:
 var config = {};
 
 function saveConfig(){
@@ -52,7 +53,14 @@ function saveConfig(){
 }
 
 function loadConfig(){
-  config = JSON.parse(localStorage.getItem("configItem"));
+  var configText = localStorage.getItem("configItem");
+  if(configText != null){
+    config = JSON.parse(configText);
+    title.innerHTML = config.titleText;
+    author.innerHTML = config.authorText;
+    addText();
+  }
+  
 }
 
 window.addEventListener("load", updateDimensions, false);
@@ -61,6 +69,7 @@ document.getElementById("gat").addEventListener("click", updateDimensions, false
 document.getElementById("cover-file").addEventListener("change", loadCover);
 
 function updateDimensions(){
+  loadConfig();
   document.getElementById("landscape").checked = "true";
   spine.style.transform = "none";
   x = 75;
