@@ -19,7 +19,7 @@ var imageHeight;
 var imageWidth;
 var margin;
 var stripes = "off";
-var frontStripes = "off";
+// var frontStripes = "off";
 var stripeClose = document.getElementById("stripe-close");
 
 var rect1 = document.getElementById("rect-1");
@@ -34,10 +34,10 @@ var line2 = document.getElementById("line-2");
 var line3 = document.getElementById("line-3");
 var line4 = document.getElementById("line-4");
 
-var coverLine1 = document.getElementById("cover-line-1"); 
-var coverLine2 = document.getElementById("cover-line-2");
-var coverLine3 = document.getElementById("cover-line-3");
-var coverLine4 = document.getElementById("cover-line-4");
+// var coverLine1 = document.getElementById("cover-line-1"); 
+// var coverLine2 = document.getElementById("cover-line-2");
+// var coverLine3 = document.getElementById("cover-line-3");
+// var coverLine4 = document.getElementById("cover-line-4");
 // var stripePicker = document.getElementById("stripe-picker");
 
 var spine = document.getElementById("spine");
@@ -49,6 +49,7 @@ var netSpine;
 var config = {};
 
 function saveConfig(){
+  // debugger;
   localStorage.setItem("configItem", JSON.stringify(config));
 }
 
@@ -56,8 +57,17 @@ function loadConfig(){
   var configText = localStorage.getItem("configItem");
   if(configText != null){
     config = JSON.parse(configText);
+
     title.innerHTML = config.titleText;
     author.innerHTML = config.authorText;
+    // wordCount = 
+    // image.src = 
+    // stripes = 
+    // 
+      
+    document.getElementById("title-input").value = config.titleText;
+    document.getElementById("author-input").value = config.authorText;
+
     addText();
   }
   
@@ -69,7 +79,7 @@ document.getElementById("gat").addEventListener("click", updateDimensions, false
 document.getElementById("cover-file").addEventListener("change", loadCover);
 
 function updateDimensions(){
-  loadConfig();
+  setTimeout(loadConfig, 100);
   document.getElementById("landscape").checked = "true";
   spine.style.transform = "none";
   x = 75;
@@ -139,13 +149,15 @@ function imageCoordinates(){
   if(coverImageExists === false){
     coverImage.style.top = coverRectY - coverMargin/2 + "px"; 
     coverImage.style.left = coverRectX - coverMargin/2 + "px";
-    textCover.style.position = "fixed";
-    textCover.style.height = holder.height - 8 + "px"; 
-    textCover.style.width = holder.width - 8 + "px"; 
-    textCover.style.top = holder.y + 4 + "px";
-    textCover.style.left = holder.x + 4 + "px";
+    Object.assign(textCover.style, {
+     position : 'fixed',
+       height : holder.height - 8 + "px",
+        width : holder.width - 8 + "px",
+          top : holder.y + 4 + "px",
+         left : holder.x + 4 + "px"
+    });
   }
-  else{
+  else {
     textCover.style.display = "none";
     coverImage.width = x;
     coverImage.height = y;
@@ -168,40 +180,34 @@ function imageCoordinates(){
       coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
       ctx.drawImage(image, 0, 0, imageWidth, y);
     } 
-    if(0.85*targetAspect > x/y){
-      frontStripes = "on";
-    }
-    else {
-      frontStripes = "off";
-    }
   }
   drawStripes();
 }
 
-// gets the co-ordinates for adding stripes, whether the user wants stripes or not
+// gets the co-ordinates for adding stripes (whether the user wants stripes or not)
 function drawStripes(){
   var lineSpace = 4;
   
-  if(frontStripes === "on"){
-    setAttributes("cover-line-1", {x1:z, y1:z+margin/2-lineSpace, x2:z+x, y2:z+margin/2-lineSpace}); 
-    setAttributes("cover-line-2", {x1:z, y1:z+margin/2, x2:z+x, y2:z+margin/2}); 
-    setAttributes("cover-line-3", {x1:z, y1:y+z-margin/2, x2:z+x, y2:y+z-margin/2}); 
-    setAttributes("cover-line-4", {x1:z, y1:y+z-margin/2+lineSpace, x2:z+x, y2:y+z-margin/2+lineSpace}); 
-    line1.style.width = margin-2*lineSpace +"px";
-    line2.style.width = margin +"px";
-    line3.style.width = 2*y-margin +"px";
-    line4.style.width = 2*y-margin + 2*lineSpace +"px";
-  }  
-  if(frontStripes === "off") {
-    setAttributes("cover-line-1", {x1:z, y1:z+y/30, x2:z, y2:z+y/30});
-    setAttributes("cover-line-2", {x1:z, y1:z+y/30+lineSpace, x2:z, y2:z+y/30+lineSpace}); 
-    setAttributes("cover-line-3", {x1:z, y1:y+z-y/30-lineSpace, x2:z, y2:y+z-y/30-lineSpace}); 
-    setAttributes("cover-line-4", {x1:z, y1:y+z-y/30, x2:z, y2:y+z-y/30}); 
+  // if(frontStripes === "on"){
+  //   setAttributes("cover-line-1", {x1:z, y1:z+margin/2-lineSpace, x2:z+x, y2:z+margin/2-lineSpace}); 
+  //   setAttributes("cover-line-2", {x1:z, y1:z+margin/2, x2:z+x, y2:z+margin/2}); 
+  //   setAttributes("cover-line-3", {x1:z, y1:y+z-margin/2, x2:z+x, y2:y+z-margin/2}); 
+  //   setAttributes("cover-line-4", {x1:z, y1:y+z-margin/2+lineSpace, x2:z+x, y2:y+z-margin/2+lineSpace}); 
+  //   line1.style.width = margin-2*lineSpace +"px";
+  //   line2.style.width = margin +"px";
+  //   line3.style.width = 2*y-margin +"px";
+  //   line4.style.width = 2*y-margin + 2*lineSpace +"px";
+  // }  
+  // if(frontStripes === "off") {
+    // setAttributes("cover-line-1", {x1:z, y1:z+y/30, x2:z, y2:z+y/30});
+    // setAttributes("cover-line-2", {x1:z, y1:z+y/30+lineSpace, x2:z, y2:z+y/30+lineSpace}); 
+    // setAttributes("cover-line-3", {x1:z, y1:y+z-y/30-lineSpace, x2:z, y2:y+z-y/30-lineSpace}); 
+    // setAttributes("cover-line-4", {x1:z, y1:y+z-y/30, x2:z, y2:y+z-y/30}); 
     line1.style.width = 2*(y/10)+"px";
     line2.style.width = 2*(y/10)+2*lineSpace+"px";
     line3.style.width = 2*(y-y/10)-2*lineSpace+"px";
     line4.style.width =  2*(y-y/10)+"px";
-  }
+  // }
   
   var spineHeight = 2*z+"px"; 
   line1.style.height = spineHeight;

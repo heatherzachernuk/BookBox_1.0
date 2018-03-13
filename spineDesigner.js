@@ -8,9 +8,11 @@ function addText(){
   var titleText = document.getElementById("title-input").value;
   var authorText = document.getElementById("author-input").value;
 
+  // local storage: 
   config.titleText = titleText;
   config.authorText = authorText;
   saveConfig();
+
   coverTitle.innerHTML = titleText;
   coverAuthor.innerHTML = authorText;
   title.innerHTML = titleText;
@@ -30,6 +32,9 @@ function coverFit(){
   var coverTitleHeight = coverTitle.getBoundingClientRect().height;
   var emSize = 6;
   coverTitle.style.fontSize = emSize + "em";
+  if(title.innerHTML.length < 1 || author.innerHTML.length < 1){
+    return;
+  }
   while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth || coverTitle.scrollHeight > (0.7*coverBox.height)){
     emSize -= 0.25;
     coverTitle.style.fontSize = emSize + "em";
@@ -57,6 +62,9 @@ function titleFit(){
   var emSize = 6;
   title.style.fontSize = emSize + "em";
   var titleHeight = title.getBoundingClientRect().height;
+  if(title.innerHTML.length < 1){
+    return;
+  }
   if(title.innerHTML.length < 25){
     title.style.whiteSpace = "nowrap";
   }
@@ -78,6 +86,9 @@ function authorFit(){
   author.style.width = spine.getBoundingClientRect().height - 6 + "px";
   
   var authorHeight = author.getBoundingClientRect().width;
+  if(author.innerHTML.length < 1){
+    return;
+  }
   while(authorHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
     // debugger;
     emSize -= 0.15;

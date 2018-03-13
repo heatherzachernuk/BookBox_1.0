@@ -17,10 +17,10 @@ function stripesOn(){
   if(stripes === "off"){
     stripeColor = title.style.color;
     stripes = "on";
-    coverLine1.setAttribute("style", "stroke: "+stripeColor+";"); 
-    coverLine2.setAttribute("style", "stroke: "+stripeColor+";");
-    coverLine3.setAttribute("style", "stroke: "+stripeColor+";");
-    coverLine4.setAttribute("style", "stroke: "+stripeColor+";");
+    // coverLine1.setAttribute("style", "stroke: "+stripeColor+";"); 
+    // coverLine2.setAttribute("style", "stroke: "+stripeColor+";");
+    // coverLine3.setAttribute("style", "stroke: "+stripeColor+";");
+    // coverLine4.setAttribute("style", "stroke: "+stripeColor+";");
     line1.style.borderRight = "3px solid "+stripeColor; 
     line2.style.borderRight = "3px solid "+stripeColor; 
     line3.style.borderRight = "3px solid "+stripeColor; 
@@ -28,10 +28,10 @@ function stripesOn(){
   }
   else{ 
     stripes = "off";
-    coverLine1.setAttribute("style", "stroke: none;"); 
-    coverLine2.setAttribute("style", "stroke: none;");
-    coverLine3.setAttribute("style", "stroke: none;");
-    coverLine4.setAttribute("style", "stroke: none;");
+    // coverLine1.setAttribute("style", "stroke: none;"); 
+    // coverLine2.setAttribute("style", "stroke: none;");
+    // coverLine3.setAttribute("style", "stroke: none;");
+    // coverLine4.setAttribute("style", "stroke: none;");
     line1.style.borderStyle = "none";
     line2.style.borderStyle = "none";
     line3.style.borderStyle = "none";
@@ -114,10 +114,10 @@ function pickColor(color){
     title.style.color = rgba; 
     author.style.color = rgba; 
     if(stripes === "on"){
-      coverLine1.setAttribute("style", "stroke: "+rgba+";"); 
-      coverLine2.setAttribute("style", "stroke: "+rgba+";");
-      coverLine3.setAttribute("style", "stroke: "+rgba+";");
-      coverLine4.setAttribute("style", "stroke: "+rgba+";");
+      // coverLine1.setAttribute("style", "stroke: "+rgba+";"); 
+      // coverLine2.setAttribute("style", "stroke: "+rgba+";");
+      // coverLine3.setAttribute("style", "stroke: "+rgba+";");
+      // coverLine4.setAttribute("style", "stroke: "+rgba+";");
       line1.style.borderRight = "3px solid "+rgba; 
       line2.style.borderRight = "3px solid "+rgba; 
       line3.style.borderRight = "3px solid "+rgba; 
