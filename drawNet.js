@@ -19,8 +19,9 @@ var imageHeight;
 var imageWidth;
 var margin;
 var stripes = "off";
-// var frontStripes = "off";
-var stripeClose = document.getElementById("stripe-close");
+
+var backgroundColor;
+var detailColor;
 
 var rect1 = document.getElementById("rect-1");
 var rect2 = document.getElementById("rect-2");
@@ -34,22 +35,19 @@ var line2 = document.getElementById("line-2");
 var line3 = document.getElementById("line-3");
 var line4 = document.getElementById("line-4");
 
-// var coverLine1 = document.getElementById("cover-line-1"); 
-// var coverLine2 = document.getElementById("cover-line-2");
-// var coverLine3 = document.getElementById("cover-line-3");
-// var coverLine4 = document.getElementById("cover-line-4");
-// var stripePicker = document.getElementById("stripe-picker");
-
 var spine = document.getElementById("spine");
 var title = document.getElementById("spine-title");
 var author = document.getElementById("spine-author");
 var netSpine;
+
+document.getElementById("count-input").value = 200000;
 
 // local storage:
 var config = {};
 
 function saveConfig(){
   // debugger;
+  console.log(":saving");
   localStorage.setItem("configItem", JSON.stringify(config));
 }
 
@@ -57,21 +55,38 @@ function loadConfig(){
   var configText = localStorage.getItem("configItem");
   if(configText != null){
     config = JSON.parse(configText);
-
+    console.log(config);
     title.innerHTML = config.titleText;
     author.innerHTML = config.authorText;
-    // wordCount = 
+
+
     // image.src = 
-    // stripes = 
-    // 
-      
+    // fontButton.style.fontFamily = fontClick.target.id;
+    // author.style.fontFamily = fontClick.target.id;
+    // title.style.fontFamily = fontClick.target.id;
+    // coverTitle.style.fontFamily = fontClick.target.id;
+    // coverAuthor.style.fontFamily = fontClick.target.id;
+
+    // line1.style.borderRight = "3px solid "+rgba; 
+    // line2.style.borderRight = "3px solid "+rgba; 
+    // line3.style.borderRight = "3px solid "+rgba; 
+    // line4.style.borderRight = "3px solid "+rgba;
+    // coverTitle.style.color = rgba;
+    // coverAuthor.style.color = rgba;
+    // title.style.color = rgba; 
+    // author.style.color = rgba; 
+    // rects[i].setAttribute = ("fill", rgba); 
+    // spine.style.backgroundColor = rgba;
+    document.getElementById("count-input").value = config.wordCount;  
     document.getElementById("title-input").value = config.titleText;
     document.getElementById("author-input").value = config.authorText;
-
-    addText();
-  }
-  
+    // stripes = config.stripes;
+    // document.getElementById("stripes").checked = config.stripeCheck;
+    
+  }  
 }
+
+loadConfig();
 
 window.addEventListener("load", updateDimensions, false);
 // window.addEventListener("load", () => spineCoordinates("landscape"), false);
@@ -79,13 +94,14 @@ document.getElementById("gat").addEventListener("click", updateDimensions, false
 document.getElementById("cover-file").addEventListener("change", loadCover);
 
 function updateDimensions(){
-  setTimeout(loadConfig, 100);
   document.getElementById("landscape").checked = "true";
   spine.style.transform = "none";
   x = 75;
   y = 100;
   z = 25;
   var wordCount = document.getElementById("count-input").value;
+  config.wordCount = wordCount;
+  saveConfig();
   y = (y * Math.log(wordCount)/Math.log(100000) - y) * 2 + y;
   z = (z * Math.log(wordCount)/Math.log(100000) - z) * 2 + z;
   x *= 2;
@@ -187,27 +203,10 @@ function imageCoordinates(){
 // gets the co-ordinates for adding stripes (whether the user wants stripes or not)
 function drawStripes(){
   var lineSpace = 4;
-  
-  // if(frontStripes === "on"){
-  //   setAttributes("cover-line-1", {x1:z, y1:z+margin/2-lineSpace, x2:z+x, y2:z+margin/2-lineSpace}); 
-  //   setAttributes("cover-line-2", {x1:z, y1:z+margin/2, x2:z+x, y2:z+margin/2}); 
-  //   setAttributes("cover-line-3", {x1:z, y1:y+z-margin/2, x2:z+x, y2:y+z-margin/2}); 
-  //   setAttributes("cover-line-4", {x1:z, y1:y+z-margin/2+lineSpace, x2:z+x, y2:y+z-margin/2+lineSpace}); 
-  //   line1.style.width = margin-2*lineSpace +"px";
-  //   line2.style.width = margin +"px";
-  //   line3.style.width = 2*y-margin +"px";
-  //   line4.style.width = 2*y-margin + 2*lineSpace +"px";
-  // }  
-  // if(frontStripes === "off") {
-    // setAttributes("cover-line-1", {x1:z, y1:z+y/30, x2:z, y2:z+y/30});
-    // setAttributes("cover-line-2", {x1:z, y1:z+y/30+lineSpace, x2:z, y2:z+y/30+lineSpace}); 
-    // setAttributes("cover-line-3", {x1:z, y1:y+z-y/30-lineSpace, x2:z, y2:y+z-y/30-lineSpace}); 
-    // setAttributes("cover-line-4", {x1:z, y1:y+z-y/30, x2:z, y2:y+z-y/30}); 
-    line1.style.width = 2*(y/10)+"px";
-    line2.style.width = 2*(y/10)+2*lineSpace+"px";
-    line3.style.width = 2*(y-y/10)-2*lineSpace+"px";
-    line4.style.width =  2*(y-y/10)+"px";
-  // }
+  line1.style.width = 2*(y/10)+"px";
+  line2.style.width = 2*(y/10)+2*lineSpace+"px";
+  line3.style.width = 2*(y-y/10)-2*lineSpace+"px";
+  line4.style.width =  2*(y-y/10)+"px";
   
   var spineHeight = 2*z+"px"; 
   line1.style.height = spineHeight;
