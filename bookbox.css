@@ -15,7 +15,7 @@ html {
 body{
   /*margin-top: 0;*/
   user-select: none;
-  font-family: Montserrat;
+  font-family: "PT Mono";
   margin: 0;
   padding: 0;
 }
@@ -91,6 +91,20 @@ line {
   z-index: 1;
 }
 
+.cover-text {
+  text-align: center;
+}
+
+#cover-title{
+  padding-top: 0.3em;
+}
+
+#cover-author{
+  position: absolute;
+  bottom: 0.2em;
+  width: 100%;
+}
+
 #color-selector{
   width: 30em;
   margin: 0 auto;
@@ -99,7 +113,7 @@ line {
 #image-canvas{
   position: fixed;
   /*display: none;*/
-  top: 800px;
+  /*outline: solid thin red;*/
 }
 
 #page{
@@ -159,28 +173,6 @@ span{
   margin-bottom: 6em;
 }
 
-/*#stripes{*/
-/*  display: inline-block;*/
-  /*vertical-align: top;*/
-/*  margin: 2em 0.5em 0 2em;*/
-/*  width: 3em;*/
-  /*outline: thin solid red;*/
-/*}*/
-
-/*#stripe-close{*/
-/*  display: inline-block;*/
-  /*outline: thin solid red;*/
-/*  transform: translateY(-60%);*/
-/*}*/
-
-/*#stripe-picker{*/
-/*  display: inline-block;*/
-/*  height: 2em;*/
-/*  width: 2em;*/
-/*  background-color: lightgray;*/
-/*  outline: thin solid black;*/
-/*}*/
-
 .label{
   display: inline-block;
   width: 10em;
@@ -211,7 +203,7 @@ i {
   width: 8em;
   font-size: 1.5em;
   text-align: center;
-  font-family: Ubuntu;
+  font-family: "PT Mono";
   line-height: 2em;
   cursor: pointer;
   display: inline-block;

@@ -1,15 +1,53 @@
 document.getElementById("get-details").addEventListener("click", addText, false);
 
+var coverTitle = document.getElementById("cover-title");
+var coverAuthor = document.getElementById("cover-author");
+
 function addText(){
   clearNetSpine();
   var titleText = document.getElementById("title-input").value;
   var authorText = document.getElementById("author-input").value;
+
+  // local storage: 
+  config.titleText = titleText;
+  config.authorText = authorText;
+  saveConfig();
+
+  coverTitle.innerHTML = titleText;
+  coverAuthor.innerHTML = authorText;
   title.innerHTML = titleText;
   author.innerHTML = authorText;
   // updates all the fonts in the list to be the input title
   Array.from(document.querySelectorAll(".font")).forEach(el => el.innerHTML = titleText);
+  if(coverImageExists === false){
+    coverFit();
+  }
   titleFit();
   authorFit();
+}
+
+function coverFit(){
+  var coverBox = textCover.getBoundingClientRect();
+  var coverTitleWidth = coverTitle.getBoundingClientRect().width;
+  var coverTitleHeight = coverTitle.getBoundingClientRect().height;
+  var emSize = 6;
+  coverTitle.style.fontSize = emSize + "em";
+  if(title.innerHTML.length < 1 || author.innerHTML.length < 1){
+    return;
+  }
+  while(coverTitleWidth > coverBox.width || coverTitle.clientWidth < coverTitle.scrollWidth || coverTitle.scrollHeight > (0.7*coverBox.height)){
+    emSize -= 0.25;
+    coverTitle.style.fontSize = emSize + "em";
+    coverTitleWidth = coverTitle.getBoundingClientRect().width;
+  }
+  var coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
+  emSize = 1.5;
+  coverAuthor.style.fontSize = emSize + "em";
+  while(coverAuthorWidth > coverBox.width || coverAuthor.clientWidth < coverAuthor.scrollWidth || coverAuthor.scrollHeight > coverBox - coverTitleHeight){
+    emSize -= 0.25;
+    coverAuthor.style.fontSize = emSize + "em";
+    coverAuthorWidth = coverAuthor.getBoundingClientRect().width;
+  }
 }
 
 function titleFit(){
@@ -20,11 +58,13 @@ function titleFit(){
   else {
     title.style.left = line2.getBoundingClientRect().width + 5 + "px"; 
   }
-  
   var spineHeight = spine.getBoundingClientRect().height;
   var emSize = 6;
   title.style.fontSize = emSize + "em";
   var titleHeight = title.getBoundingClientRect().height;
+  if(title.innerHTML.length < 1){
+    return;
+  }
   if(title.innerHTML.length < 25){
     title.style.whiteSpace = "nowrap";
   }
@@ -43,18 +83,17 @@ function authorFit(){
   var authorSpace = line3.getBoundingClientRect().right - title.getBoundingClientRect().right;
   var emSize = 3;
   author.style.fontSize = emSize + "em";
+  author.style.width = spine.getBoundingClientRect().height - 6 + "px";
   
-  // refers to the "height" - pre-rotation
-  // author.style.height = authorSpace + "px";
-  // what's the point in setting this if it changes?
-  author.style.width = spine.getBoundingClientRect().height + "px";
-  
-  var textBoxHeight = author.getBoundingClientRect().width;
-  while(textBoxHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
+  var authorHeight = author.getBoundingClientRect().width;
+  if(author.innerHTML.length < 1){
+    return;
+  }
+  while(authorHeight > authorSpace || author.clientHeight < author.scrollHeight || author.clientWidth < author.scrollWidth){
     // debugger;
     emSize -= 0.15;
     author.style.fontSize = emSize + "em";
-    textBoxHeight = author.getBoundingClientRect().width;
+    authorHeight = author.getBoundingClientRect().width;
   }
   // sets the position of the author to just above the spine line below
   if(stripes === "on"){

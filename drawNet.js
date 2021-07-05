@@ -6,17 +6,22 @@ var holder;
 
 // object where the cover image is drawn on the net
 var coverImage = document.getElementById("image-canvas");
-
+var coverImageExists = false;
+var textCover = document.getElementById("text-only");
+// variable to set a bit of a margin on the cover text
+var coverMargin = 6;
 // the actual cover image element
 var image = document.getElementById("image");
 image.crossOrigin = "Anonymous";
+
 
 var imageHeight;
 var imageWidth;
 var margin;
 var stripes = "off";
-var frontStripes = "off";
-var stripeClose = document.getElementById("stripe-close");
+
+var backgroundColor;
+var detailColor;
 
 var rect1 = document.getElementById("rect-1");
 var rect2 = document.getElementById("rect-2");
@@ -30,16 +35,58 @@ var line2 = document.getElementById("line-2");
 var line3 = document.getElementById("line-3");
 var line4 = document.getElementById("line-4");
 
-var coverLine1 = document.getElementById("cover-line-1"); 
-var coverLine2 = document.getElementById("cover-line-2");
-var coverLine3 = document.getElementById("cover-line-3");
-var coverLine4 = document.getElementById("cover-line-4");
-// var stripePicker = document.getElementById("stripe-picker");
-
 var spine = document.getElementById("spine");
 var title = document.getElementById("spine-title");
 var author = document.getElementById("spine-author");
 var netSpine;
+
+document.getElementById("count-input").value = 200000;
+
+// local storage:
+var config = {};
+
+function saveConfig(){
+  // debugger;
+  console.log(":saving");
+  localStorage.setItem("configItem", JSON.stringify(config));
+}
+
+function loadConfig(){
+  var configText = localStorage.getItem("configItem");
+  if(configText != null){
+    config = JSON.parse(configText);
+    console.log(config);
+    title.innerHTML = config.titleText;
+    author.innerHTML = config.authorText;
+
+
+    // image.src = 
+    // fontButton.style.fontFamily = fontClick.target.id;
+    // author.style.fontFamily = fontClick.target.id;
+    // title.style.fontFamily = fontClick.target.id;
+    // coverTitle.style.fontFamily = fontClick.target.id;
+    // coverAuthor.style.fontFamily = fontClick.target.id;
+
+    // line1.style.borderRight = "3px solid "+rgba; 
+    // line2.style.borderRight = "3px solid "+rgba; 
+    // line3.style.borderRight = "3px solid "+rgba; 
+    // line4.style.borderRight = "3px solid "+rgba;
+    // coverTitle.style.color = rgba;
+    // coverAuthor.style.color = rgba;
+    // title.style.color = rgba; 
+    // author.style.color = rgba; 
+    // rects[i].setAttribute = ("fill", rgba); 
+    // spine.style.backgroundColor = rgba;
+    document.getElementById("count-input").value = config.wordCount;  
+    document.getElementById("title-input").value = config.titleText;
+    document.getElementById("author-input").value = config.authorText;
+    // stripes = config.stripes;
+    // document.getElementById("stripes").checked = config.stripeCheck;
+    
+  }  
+}
+
+loadConfig();
 
 window.addEventListener("load", updateDimensions, false);
 // window.addEventListener("load", () => spineCoordinates("landscape"), false);
@@ -53,6 +100,8 @@ function updateDimensions(){
   y = 100;
   z = 25;
   var wordCount = document.getElementById("count-input").value;
+  config.wordCount = wordCount;
+  saveConfig();
   y = (y * Math.log(wordCount)/Math.log(100000) - y) * 2 + y;
   z = (z * Math.log(wordCount)/Math.log(100000) - z) * 2 + z;
   x *= 2;
@@ -79,6 +128,7 @@ function loadCover(changeEvent){
   reader.addEventListener("load", onCoverFileLoaded);
   reader.readAsDataURL(file); 
   document.getElementById("image-picker-div").style.visibility = "visible";
+  coverImageExists = true;
 }
 
 function onCoverFileLoaded(fileLoadEvent){
@@ -109,63 +159,54 @@ function setAttributes(objectId, attributes){
 
 // checks whether your cover image is taller or wider
 function imageCoordinates(){
-  coverImage.width = x;
-  coverImage.height = y;
   holder = rect3.getBoundingClientRect();
-  coverRectX = holder.x;
-  coverRectY = holder.y;
-  //what are the 4px on the left from?
-  var ctx = coverImage.getContext("2d");
-  var targetAspect = image.width/image.height;
-  // if the cover image is proportionally shorter and wider than the net cover
-  if(targetAspect > x/y){
-    imageHeight = x/targetAspect; 
-    imageWidth = x;
-    margin = (y - imageHeight)/2;    
-    coverImage.style = ("top: " + (coverRectY + margin) + "px; left: " + coverRectX + "px;");
-    ctx.drawImage(image, 0, 0, x, imageHeight);
-  }
-  // if the cover image is proportionally taller and skinner than the net cover
-  else if(targetAspect <= x/y){
-    imageHeight = y;
-    imageWidth = y * targetAspect;
-    margin = (x - imageWidth)/2;
-    coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
-    ctx.drawImage(image, 0, 0, imageWidth, y);
-  } 
-  if(0.85*targetAspect > x/y){
-    frontStripes = "on";
+  var coverRectX = holder.x;
+  var coverRectY = holder.y;
+  if(coverImageExists === false){
+    coverImage.style.top = coverRectY - coverMargin/2 + "px"; 
+    coverImage.style.left = coverRectX - coverMargin/2 + "px";
+    Object.assign(textCover.style, {
+     position : 'fixed',
+       height : holder.height - 8 + "px",
+        width : holder.width - 8 + "px",
+          top : holder.y + 4 + "px",
+         left : holder.x + 4 + "px"
+    });
   }
   else {
-    frontStripes = "off";
+    textCover.style.display = "none";
+    coverImage.width = x;
+    coverImage.height = y;
+    //what are the 4px on the left from?
+    var ctx = coverImage.getContext("2d");
+    var targetAspect = image.width/image.height;
+    // if the cover image is proportionally shorter and wider than the net cover
+    if(targetAspect > x/y){
+      imageHeight = x/targetAspect; 
+      imageWidth = x;
+      margin = (y - imageHeight)/2;    
+      coverImage.style = ("top: " + (coverRectY + margin) + "px; left: " + coverRectX + "px;");
+      ctx.drawImage(image, 0, 0, x, imageHeight);
+    }
+    // if the cover image is proportionally taller and skinner than the net cover
+    else if(targetAspect <= x/y){
+      imageHeight = y;
+      imageWidth = y * targetAspect;
+      margin = (x - imageWidth)/2;
+      coverImage.style = ("top: " + coverRectY + "px; left: " + (coverRectX + margin) + "px;");
+      ctx.drawImage(image, 0, 0, imageWidth, y);
+    } 
   }
   drawStripes();
 }
 
-// gets the co-ordinates for adding stripes, whether the user wants stripes or not
+// gets the co-ordinates for adding stripes (whether the user wants stripes or not)
 function drawStripes(){
   var lineSpace = 4;
-  
-  if(frontStripes === "on"){
-    setAttributes("cover-line-1", {x1:z, y1:z+margin/2-lineSpace, x2:z+x, y2:z+margin/2-lineSpace}); 
-    setAttributes("cover-line-2", {x1:z, y1:z+margin/2, x2:z+x, y2:z+margin/2}); 
-    setAttributes("cover-line-3", {x1:z, y1:y+z-margin/2, x2:z+x, y2:y+z-margin/2}); 
-    setAttributes("cover-line-4", {x1:z, y1:y+z-margin/2+lineSpace, x2:z+x, y2:y+z-margin/2+lineSpace}); 
-    line1.style.width = margin-2*lineSpace +"px";
-    line2.style.width = margin +"px";
-    line3.style.width = 2*y-margin +"px";
-    line4.style.width = 2*y-margin + 2*lineSpace +"px";
-  }  
-  if(frontStripes === "off") {
-    setAttributes("cover-line-1", {x1:z, y1:z+y/30, x2:z, y2:z+y/30});
-    setAttributes("cover-line-2", {x1:z, y1:z+y/30+lineSpace, x2:z, y2:z+y/30+lineSpace}); 
-    setAttributes("cover-line-3", {x1:z, y1:y+z-y/30-lineSpace, x2:z, y2:y+z-y/30-lineSpace}); 
-    setAttributes("cover-line-4", {x1:z, y1:y+z-y/30, x2:z, y2:y+z-y/30}); 
-    line1.style.width = 2*(y/10)+"px";
-    line2.style.width = 2*(y/10)+2*lineSpace+"px";
-    line3.style.width = 2*(y-y/10)-2*lineSpace+"px";
-    line4.style.width =  2*(y-y/10)+"px";
-  }
+  line1.style.width = 2*(y/10)+"px";
+  line2.style.width = 2*(y/10)+2*lineSpace+"px";
+  line3.style.width = 2*(y-y/10)-2*lineSpace+"px";
+  line4.style.width =  2*(y-y/10)+"px";
   
   var spineHeight = 2*z+"px"; 
   line1.style.height = spineHeight;
